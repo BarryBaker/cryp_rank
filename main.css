@@ -1,0 +1,41 @@
+.main, .sel{display: grid;
+    grid-template-columns:repeat(4,35px);
+}
+
+.bet4{display: grid;
+    grid-template-columns:repeat(10,35px);
+}
+
+.main{padding-right: 15px;}
+.sel{padding-bottom: 1px;}
+.result{padding-bottom: 20px;}
+
+.result{display: grid;
+    grid-template-columns:repeat(11,35px);
+  
+}
+/*.main div{height: 15px;}*/
+
+/*.grey{background-color: rgb(144, 143, 143);}*/
+.blue{background-color: rgb(124, 151, 173);}
+.highlight{background-color: rgb(162, 198, 238);}
+.card:not(.blue):not(.grey):hover{background-color: rgb(190, 99, 99);}
+
+.card{text-align: center;}
+
+.main div, .result div, .bet4 div{border: solid thin grey;
+    height: 25px;}
+
+.sel div, .res, .b4{width: 35px;
+    height: 25px;
+    text-align: center;}
+
+
+body{display: inline-flex;
+    background-color: rgb(197,217,240);
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+      -moz-user-select: none;
+       -ms-user-select: none;
+           user-select: none;
+                             }
