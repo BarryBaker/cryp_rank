@@ -1,31 +1,32 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script>pp = function (a) { console.log(...arguments) };</script>
-
-</head>
-<body>
+    <script>
+      pp = function(a) {
+        console.log(...arguments);
+      };
+    </script>
+  </head>
+  <body>
     <button class="open">open</button>
-</body>
+  </body>
 
-<script>
-    $( document ).ready(function() {
-        
-        $('.open').click(function(){
-            pp('aaa')
-                window.open('/crypto.html','_blank', "menubar=0, status=0,titlebar=0, toolbar=0, width=618,height=405"
-                  //width=+23 kell mheight=+20 kell az eredeti windowhoz képest
-                )  ;
-                })
-
-
-    })    
-
-
-</script>
+  <script>
+    $(document).ready(function() {
+      $(".open").click(function() {
+        pp("aaa");
+        window.open(
+          "/index.html",
+          "_blank",
+          "menubar=0, status=0,titlebar=0, toolbar=0, width=618,height=405"
+          //width=+23 kell mheight=+20 kell az eredeti windowhoz képest
+        );
+      });
+    });
+  </script>
 </html>
