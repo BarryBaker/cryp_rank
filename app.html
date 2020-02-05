@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    
+    <!-- <script src="jquery-csv.js"></script> -->
+    <script>pp = function (a) { console.log(...arguments) };</script>
+
+</head>
+<body>
+     
+    <div class='main'></div>
+    <div class="result_cont">
+        <div class='sel'>
+            <div class="sel0">A</div>
+            <div class="sel1">K</div>
+            <div class="sel2">Q</div>
+            <div class="sel3">J</div>
+        </div>
+
+        <div class="result">
+        
+
+        </div>
+        <div class="bet4">
+
+ 
+
+        </div>
+
+
+
+    </div>
+</body>
+<script src="data.js"></script>
+<script>
+$( document ).ready(function() {
+    
+     $('.open').click(function(){
+                window.open('https://barrybaker.github.io/cryp_rank/','_blank', "menubar=0, status=0,titlebar=0, toolbar=0, width=618,height=405"
+                  //width=+23 kell mheight=+20 kell az eredeti windowhoz képest
+                )  ;
+                })
+    
+    
+    cards=['A','K','Q','J','T','9','8','7','6','5','4','3','2']
+    
+    
+    for(let i=0;i<13;i++){
+    for(let j=0;j<4;j++){
+    
+        $('.main').append(`<div class='card ${cards[i]}${j}' data-col=${j} data-row=${i}>${cards[i]}</div>`)
+      
+        }}
+
+    // Result
+
+    for(let i=0;i<6;i++){
+    for(let j=0;j<11;j++){
+        if (i==0 || j==0){
+        $('.result').append(`<div class='res title' data-col=${j} data-row=${i}></div>`)
+        }
+        else if (j==3 || j==4 || j==7 || j==8) {$('.result').append(`<div class='res table highlight' data-col=${j} data-row=${i}></div>`)}
+        else  {$('.result').append(`<div class='res table' data-col=${j} data-row=${i}></div>`)}
+
+        }}
+    
+    update = function(r,c,text){
+        $(`.res[data-col=${c}][data-row=${r}]`).text(text)
+    }
+
+    update(1,0,'ds')
+    update(2,0,'ss')
+    update(3,0,'ss2')
+    update(4,0,'ss3')
+    update(5,0,'r')
+
+    update(0,1,'ranks')
+    update(0,3,'fi')
+    update(0,5,'3bi')
+    update(0,7,'3bo')
+    update(0,9,'4b')
+
+
+    // 4bet
+
+
+    for(let i=0;i<4;i++){
+    for(let j=0;j<10;j++){
+        if (i==0 || j==0){
+        $('.bet4').append(`<div class='b4 title' data-col=${j} data-row=${i}></div>`)
+        }
+        else  {$('.bet4').append(`<div class='b4 table' data-col=${j} data-row=${i}></div>`)}
+
+        }}
+    
+    update4 = function(r,c,text){
+        $(`.b4[data-col=${c}][data-row=${r}]`).text(text)
+    }
+
+    update4(1,0,'ds')
+    update4(2,0,'s')
+    update4(3,0,'r')
+
+    update4(0,1,0.5)
+    update4(0,2,0.75)
+    update4(0,3,1)
+    update4(0,4,1.25)
+    update4(0,5,1.5)
+    update4(0,6,1.75)
+    update4(0,7,2)
+    update4(0,8,2.5)
+    update4(0,9,3)
+    
+//-------------------------------------------------------------------------
+
+
+//pp(i3['QQJJr'])
+
+    sel=['A','K','Q','J']
+    suit1=['ds', 'ss', 'ss2','ss3','r']
+    suit2=['ds2', 'ssb','ss2b','ssbb']
+    blok = [ranks,fi,i3,o3,b4]
+
+    spr = ['0.5','0.75','1.0','1.25','1.5','1.75','2.0','2.5','3.0']
+    suit4b = ['ds','s','r']
+
+    $('.card').click(function(){
+        if($(this).hasClass('grey')){return}
+        const row = $(this).data('row')
+        const col =  $(this).data('col')
+        
+        
+        if (col<3){
+        for(let j=col+1;j<4;j++){
+            $(`.card[data-col=${j}]`).removeClass('grey')}
+        for(let i=0;i<row;i++){
+        for(let j=col+1;j<4;j++){
+        $(`.card[data-col=${j}][data-row=${i}]`).addClass('grey').removeClass('blue')
+        }}
+        }
+
+        $(`.card[data-col=${col}]`).removeClass('blue')
+        $(this).addClass('blue')
+
+        sel[col]=$(this).text()
+        $(`.sel${col}`).text($(this).text())
+
+        cards4=sel[0]+sel[1]+sel[2]+sel[3]
+
+
+        // Display result
+        $('.table').text('')
+
+        for (let i=0;i< blok.length;i++){
+            for (let j=0;j< suit1.length;j++){
+                update(j+1,2*i+1, blok[i][cards4+suit1[j]])
+            }
+            for (let j=0;j< suit2.length;j++){
+                update(j+1,2*i+2, blok[i][cards4+suit2[j]])
+            }
+        }
+
+        // Displ 4bet
+        //$('.table').text('')
+
+        for (let i=0;i< suit4b.length;i++){
+            for (let j=0;j< spr.length;j++){
+                update4(i+1,j+1, b4c[cards4+suit4b[i]+spr[j]])
+            }}
+        
+
+
+    })
+    
+  
+
+        
+})
+
+
+</script>
+</html>
